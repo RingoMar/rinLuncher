@@ -1,0 +1,4 @@
+node_modules
+src/**.js
+src/scripts/**.js
+*.log

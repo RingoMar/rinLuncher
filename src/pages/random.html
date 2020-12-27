@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Electron typescript Luncher" />
+    <meta name="author" content="ringomar" />
+    <meta name="generator" content="Hugo 0.79.0" />
+    <title>Oybot Luncher</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#7952b3" />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="../css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header
+      class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
+        >OYBOT LUNCHER</a
+      >
+      <button
+        class="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <input
+        class="form-control rinBotpath form-control-dark w-100"
+        id="fileId"
+        type="text"
+        placeholder="Bot Path"
+        aria-label="Bot Path"
+        disabled
+      />
+      <ul class="navbar-nav px-3">
+        <button
+          class="btn-primary center-block rounded"
+          type="button"
+          id="btnLoadFile"
+        >
+          UPDATE
+        </button>
+      </ul>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav
+          id="sidebarMenu"
+          class="col-md-3 col-lg-2 d-md-block sidebar collapse"
+        >
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <h6
+                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted"
+              >
+                <span>Oybot Core</span>
+              </h6>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="../index.html">
+                  <span data-feather="home"></span>
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="updater.html">
+                  <span data-feather="download-cloud"></span>
+                  Update
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="terminal"></span>
+                  Runtime
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="help-circle"></span>
+                  Help
+                </a>
+              </li>
+            </ul>
+
+            <h6
+              class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+            >
+              <span>Preferences</span>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link active" href="random.html">
+                  <span data-feather="repeat"></span>
+                  Random Messages
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Blacklist Hello
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  User Names
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">RANDOM MESSAGES</h1>
+          </div>
+          <label for="interVal" class="form-label"
+            >RANDOM MESSAGES INTERVAL (SECONDS)</label
+          >
+          <div class="input-group mb-3">
+            <button
+              class="btn btn-outline-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              PRESET
+            </button>
+            <ul class="dropdown-menu bg-secondary text-light">
+              <li>
+                <a class="30 bg-transparent dropdown-item text-light" href="#"
+                  >30 Minutes</a
+                >
+              </li>
+              <li>
+                <a class="45 bg-transparent dropdown-item text-light" href="#"
+                  >45 Minutes</a
+                >
+              </li>
+              <li>
+                <a class="60 bg-transparent dropdown-item text-light" href="#"
+                  >60 Minutes</a
+                >
+              </li>
+              <li>
+                <a class="130 bg-transparent dropdown-item text-light" href="#"
+                  >1 Hour 30 Minutes</a
+                >
+              </li>
+              <li>
+                <a class="2 bg-transparent dropdown-item text-light" href="#"
+                  >2 Hours</a
+                >
+              </li>
+            </ul>
+            <input
+              type="text"
+              id="interVal"
+              class="randomInput bg-transparent btn-outline-secondary form-control text-light"
+              aria-label="Text input with dropdown button"
+            />
+            <span class="btn btn-success input-group-text saveInterval"
+              >SAVE</span
+            >
+          </div>
+
+          <div
+            class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          ></div>
+          <table class="caption-top table text-white">
+            <caption>
+              List of users
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+          <script>
+            var exports = {};
+            require("../scripts/getpath.js");
+            require("../scripts/main.js");
+            require("../scripts/random.js");
+          </script>
+
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+          <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"
+          ></script>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
