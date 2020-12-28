@@ -1,37 +1,36 @@
-import * as rinLib from '../scripts/passoutput.js';
+import { rinConsole } from '../scripts/passoutput.js';
 import * as $ from 'jquery';
-import * as electron from 'electron';
-const ipc = electron.ipcRenderer
-import * as fs from 'fs';
-import * as popper from 'popper.js';
+import { ipcRenderer } from 'electron';
+const ipc = ipcRenderer
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
 
 const dir = process.env.APPDATA + '/oybotLuncher'
 
-if (!fs.existsSync(dir)) {
+if (!existsSync(dir)) {
     console.log("making dir", dir)
-    fs.mkdirSync(dir);
+    mkdirSync(dir);
     let data = `{"baseDir": ""}`;
-    fs.writeFileSync(`${dir}/settings.json`, data);
+    writeFileSync(`${dir}/settings.json`, data);
 };
 
-const dataSettings = fs.readFileSync(`${dir}/settings.json`,
+const dataSettings = readFileSync(`${dir}/settings.json`,
     { encoding: 'utf8', flag: 'r' });
 
 const dataSetting = JSON.parse(dataSettings);
 
 if (dataSetting["baseDir"]) {
 
-    rinLib.rinConsole("info", "Your base folder was found!")
+    rinConsole("info", "Your base folder was found!")
     $("#fileId").val(dataSetting["baseDir"]);
 } else {
-    rinLib.rinConsole("err", "Your base folder could not be found!")
+    rinConsole("err", "Your base folder could not be found!")
     $("#fileId").addClass("missing")
 }
 
 const errorBtn = document.getElementById('btnLoadFile')
 
 errorBtn.addEventListener('click', function () {
-    rinLib.rinConsole("info", "Opening to find folder path!")
+    rinConsole("info", "Opening to find folder path!")
     ipc.send('open-directory-dialog')
 })
 
@@ -40,7 +39,8 @@ ipc.on("open-directory-name", function (event, argv) {
     $("#fileId").val(stringForFile.replace(/\\/g, "/"));
     $("#fileId").removeClass("missing")
     var data = `{"baseDir": "${stringForFile.replace(/\\/g, "/")}"}`;
-    fs.writeFileSync(`${dir}/settings.json`, data);
-    rinLib.rinConsole("success", "Got your folder path!")
+    writeFileSync(`${dir}/settings.json`, data);
+    rinConsole("success", "Got your folder path!")
 })
 
+export const downloadedUser = dataSetting["baseDir"];

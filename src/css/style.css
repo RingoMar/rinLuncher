@@ -159,3 +159,7 @@ nav#sidebarMenu {
 .randomInput:hover {
   border-color: none !important;
 }
+
+.adderButn {
+  line-height: 0.5;
+}

@@ -1,17 +1,17 @@
-import * as fs from 'fs';
+import { readFileSync, readFile } from 'fs';
 import * as $ from 'jquery';
-import * as rinLib from '../scripts/passoutput.js';
-import { spawn } from 'child_process';
+import { rinConsole } from '../scripts/passoutput.js';
+import * as child_process from 'child_process';
 import * as request from "request-promise-native";
 
 const dir = process.env.APPDATA + '/oybotLuncher/settings.json'
 const downloadDir = process.env.APPDATA + '\\oybotLuncher\\'
-const dataSettings = fs.readFileSync(dir, { encoding: 'utf8', flag: 'r' });
+const dataSettings = readFileSync(dir, { encoding: 'utf8', flag: 'r' });
 const dataSetting = JSON.parse(dataSettings);
 var updateReady: boolean = true;
 var updateNumber: string = "";
 
-fs.readFile(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 'r' }, function (err, stats) {
+readFile(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 'r' }, function (err, stats) {
     if (err) {
         (async () => {
             var options = {
@@ -22,18 +22,18 @@ fs.readFile(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 
             const resultJson = JSON.parse(result);
             let cloudVerson = resultJson.version;
             updateNumber = cloudVerson
-            rinLib.rinConsole("info", "Oybot version file is missing!");
+            rinConsole("info", "Oybot version file is missing!");
 
-            rinLib.rinConsole("success", "Oybot cloud connected.")
-            rinLib.rinConsole("info", `Oybot version ${cloudVerson} ready!`)
+            rinConsole("success", "Oybot cloud connected.")
+            rinConsole("info", `Oybot version ${cloudVerson} ready!`)
             $(".updaterbutton").append(cloudVerson);
 
         })()
 
     }
-    rinLib.rinConsole("info", "Oybot version file was found!");
-    rinLib.rinConsole("info", "Checking for new update....");
-    let versionNumber = fs.readFileSync(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 'r' });
+    rinConsole("info", "Oybot version file was found!");
+    rinConsole("info", "Checking for new update....");
+    let versionNumber = readFileSync(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 'r' });
     const versionJson = JSON.parse(versionNumber);
     let verString: number = +versionJson["version"];
 
@@ -45,18 +45,18 @@ fs.readFile(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 
         const result = await request.get(options);
         const resultJson = JSON.parse(result);
         let cloudVerson = resultJson.version;
-        rinLib.rinConsole("success", "Oybot cloud connected.")
+        rinConsole("success", "Oybot cloud connected.")
         let verCloud: number = cloudVerson;
         updateNumber = cloudVerson
         if (verString < verCloud) {
             $(".updaterbutton").append(cloudVerson);
-            rinLib.rinConsole("info", `Oybot version ${cloudVerson} ready! (Local:${verString})`)
+            rinConsole("info", `Oybot version ${cloudVerson} ready! (Local:${verString})`)
         } else {
             updateReady = false
             $(".updaterbutton").removeClass("btn-success");
             $(".updaterbutton").addClass("btn-danger");
             $(".updaterbutton").append(cloudVerson);
-            rinLib.rinConsole("info", `Oybot is already up to date! ${cloudVerson}`)
+            rinConsole("info", `Oybot is already up to date! ${cloudVerson}`)
         }
 
     })()
@@ -64,7 +64,7 @@ fs.readFile(`${dataSetting["baseDir"]}/version.json`, { encoding: 'utf8', flag: 
 });
 
 function rinTrain() {
-    const python = spawn(`${dataSetting["baseDir"]}\\Artificial\\train.bat`);
+    const python = child_process.spawn(`${dataSetting["baseDir"]}\\Artificial\\train.bat`);
     python.stdout.on('data', function (data) {
         const stringdata: string = data.toString()
         let pprtyData = stringdata.split("\r\n")
@@ -73,7 +73,7 @@ function rinTrain() {
                 scollDown()
             } else {
 
-                rinLib.rinConsole("info", element)
+                rinConsole("info", element)
                 scollDown()
             }
         });
@@ -81,33 +81,32 @@ function rinTrain() {
 
 
     python.on('close', (code) => {
-        rinLib.rinConsole("success", `Closed Python with code ${code}`)
+        rinConsole("success", `Closed Python with code ${code}`)
 
     });
 
 }
 
 function rinUpdate() {
-    const python = spawn('python', [`${process.env.INIT_CWD}\\src\\dic\\rinZip.py`, `https://github.com/RingoMar/androyd/releases/download/${updateNumber}/oybot.zip`, dataSetting["baseDir"]]);
+    const python = child_process.spawn('python', [`${process.env.INIT_CWD}\\src\\dic\\rinZip.py`, `https://github.com/RingoMar/androyd/releases/download/${updateNumber}/oybot.zip`, dataSetting["baseDir"]]);
     python.stdout.on('data', function (data) {
         const stringdata: string = data.toString()
         let pprtyData = stringdata.split("\n")
         pprtyData.forEach(element => {
             if (element == "") {
-
-                rinLib.rinConsole("success", "Download done!")
+                rinConsole("success", "Download done!")
             } else {
 
-                rinLib.rinConsole("info", element)
+                rinConsole("info", element)
             }
         });
     });
 
 
     python.on('close', (code) => {
-        rinLib.rinConsole("success", `Closed Python with code ${code}`)
+        rinConsole("success", `Closed Python with code ${code}`)
         updateReady = false
-        rinLib.rinConsole("warn", "NOW STARTING OYBOT AI TRAINER")
+        rinConsole("warn", "NOW STARTING OYBOT AI TRAINER")
         rinTrain();
 
     });
@@ -116,7 +115,6 @@ function rinUpdate() {
 
 
 $(".updaterbutton").click(function () {
-
     if (updateReady) {
         rinUpdate()
     } else {
