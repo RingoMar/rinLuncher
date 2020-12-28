@@ -92,6 +92,7 @@ function updateInterval(timeInt) {
 }
 
 $(".editerBtn").click(function () {
+    $("#editConfim").modal("show")
     var removedEl = dataSetting.talk.splice(dataSetting.talk.indexOf(this.id), 1);
     console.log(dataSetting.talk);
     console.log(removedEl);
@@ -104,6 +105,22 @@ $(".saveInterval").click(function () {
 $('.randomInput').on('input', function () {
     $(".saveInterval").removeClass("disabled")
 });
+
+
+var forms = document.querySelectorAll('.needs-validation')
+
+Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+        }, false)
+    })
+
 
     // var update_entry = (id, st, et, fn) => {
     //     var old_instance = JSON.parse(fs.readFileSync(`${fn}`, 'utf-8')); 
