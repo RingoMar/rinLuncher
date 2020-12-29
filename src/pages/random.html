@@ -242,14 +242,14 @@
       class="modal fade show"
       id="editConfim"
       tabindex="-1"
-      aria-labelledby="confirmDeleteLabel"
+      aria-labelledby="confirmDeleteedit"
       aria-modal="true"
       role="dialog"
     >
       <div class="modal-dialog">
         <div class="bg-secondary modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="confirmDeleteLabel">Edit Message</h4>
+            <h4 class="modal-title" id="confirmDeleteedit">Edit Message</h4>
             <button
               type="button"
               data-dismiss="modal"
@@ -340,6 +340,18 @@
               aria-hidden="true"
             ></button>
           </div>
+          <div class="modal-body">
+            <div class="position-relative">
+              <label for="validationTooltip04" class="form-label">New Random Message</label>
+              <input
+                type="text"
+                class="form-control"
+                id="validationTooltip04"
+                required
+              />
+              <div class="invalid-tooltip">Please provide some text.</div>
+            </div>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">
               Cancel
@@ -347,7 +359,7 @@
             <button
               type="submit"
               class="btn btn-success btn-ok"
-              id="confirmBtndel"
+              id="confirmBtnadd"
             >
               Mhm Hmm
             </button>

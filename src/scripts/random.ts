@@ -91,17 +91,17 @@ function updateInterval(timeInt) {
 }
 
 $(".adderButn").click(function () {
-    $("#delConfim").modal("addNewMod");
-
+    $("#addNewMod").modal("toggle");
+    $(".invalid-tooltip").css("display", "none");
 });
 
 $(".delBtn").click(function () {
     dataSetting.talk.splice(dataSetting.talk.indexOf(this.id), 1);
-    $("#delConfim").modal("show");
+    $("#delConfim").modal("toggle");
 });
 
 $(".editerBtn").click(function () {
-    $("#editConfim").modal("show");
+    $("#editConfim").modal("toggle");
     $(".invalid-tooltip").css("display", "none");
     var removedEl = dataSetting.talk.splice(dataSetting.talk.indexOf(this.id), 1);
     $("#validationTooltip03").val("");
@@ -119,7 +119,7 @@ $(document).ready(function () {
                 `${downloadedUser}\\config.json`,
                 JSON.stringify(dataSetting)
             );
-            $("#editConfim").modal("hide");
+            $("#editConfim").modal("toggle");
             populateTable();
         }
     });
@@ -129,8 +129,25 @@ $(document).ready(function () {
             `${downloadedUser}\\config.json`,
             JSON.stringify(dataSetting)
         );
-        $("#delConfim").modal("hide");
+        $("#delConfim").modal("toggle");
         populateTable();
+    });
+
+    $(document).on("click", "#confirmBtnadd", function (event) {
+        let newAdd: string = $("#validationTooltip04").val();
+        if (!newAdd) {
+            $(".invalid-tooltip").css("display", "flex");
+        } else {
+            dataSetting.talk.push(newAdd);
+            fs.writeFileSync(
+                `${downloadedUser}\\config.json`,
+                JSON.stringify(dataSetting)
+            );
+            $("#addNewMod").modal("toggle");
+            populateTable();
+
+        }
+
     });
 });
 
@@ -150,3 +167,15 @@ $(".randomInput").on("input", function () {
 //     let new_instance = old_instance.filter(record => { return record.talk  }); // Copy original array besides found record
 //     new_instance.push(found);return new_instance; // Add found record to new array and return
 // }
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
