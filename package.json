@@ -26,8 +26,8 @@
     "start:ts": "electron src/electron.js",
     "build:web": "webpack --config ./webpack.config.js",
     "build:webre": "webpack --config ./webpack-react.config.js",
-    "start:web": "npx tsc && npm run build:web && electron ./src/electron.js",
-    "start:re": "npm run build:webre && electron ./dist/electron.js"
+    "start:web": "yarn tsc && yarn run build:web && electron ./src/electron.js",
+    "start:re": "yarn run build:webre && electron ./dist/electron.js"
   },
   "dependencies": {
     "@types/follow-redirects": "^1.13.0",
