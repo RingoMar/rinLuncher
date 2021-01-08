@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Electron typescript Luncher" />
     <meta name="author" content="ringomar" />
-    <meta name="generator" content="Hugo 0.79.0" />
     <title>Oybot Luncher</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -13,25 +12,8 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-
-    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico" />
     <meta name="theme-color" content="#7952b3" />
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
     <link href="../css/style.css" rel="stylesheet" />
   </head>
 
@@ -39,9 +21,9 @@
     <header
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
     >
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"
-        >OYBOT LUNCHER</a
-      >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+        OYBOT LUNCHER
+      </a>
       <button
         class="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
@@ -67,7 +49,7 @@
           type="button"
           id="btnLoadFile"
         >
-        EDIT
+          EDIT
         </button>
       </ul>
     </header>
@@ -98,7 +80,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="runtime.html">
                   <span data-feather="terminal"></span>
                   Runtime
                 </a>
@@ -123,7 +105,7 @@
                   Random Messages
                 </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item">
                 <a class="nav-link" href="blacklist.html">
                   <span data-feather="file-text"></span>
                   Blacklist Hello
@@ -134,41 +116,42 @@
         </nav>
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            
-          <script>
-            var exports = {};
-            require("../scripts/getpath.js");
-            require("../scripts/main.js");
-          </script>
-
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-          <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-            crossorigin="anonymous"
-          ></script>
-        </main>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="bg-secondary modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Edit </h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">User:</label>
-                      <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-success btnPass">Does it done.</button>
-                </div>
-              </div>
-            </div>
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">What is the path up top for❓</h1>
           </div>
+          <p class="col-11 m-3">
+            This allows you to have a flexible way of setting your bot files in
+            an easy accessible location in case you ever want to physically edit
+            it. This also allow you to attach the launcher to existing files and
+            configs.
+          </p>
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">How to update❓</h1>
+          </div>
+          <p class="col-11 m-3">
+            Click on the update tab. After you will see a update button, if the
+            button is green a update is ready if the button is red the latest
+            update of already installed but if you would like to reinstall the
+            latest update you can do so
+          </p>
+        </main>
+        <script>
+          var exports = {};
+          require("../scripts/getpath.js");
+          require("../scripts/main.js");
+        </script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+          crossorigin="anonymous"
+        ></script>
+      </div>
+    </div>
   </body>
 </html>

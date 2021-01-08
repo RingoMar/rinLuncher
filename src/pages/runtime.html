@@ -92,13 +92,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="updater.html">
+                <a class="nav-link" href="updater.html">
                   <span data-feather="download-cloud"></span>
                   Update
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="runtime.html">
+                <a class="nav-link active" href="runtime.html">
                   <span data-feather="terminal"></span>
                   Runtime
                 </a>
@@ -137,28 +137,26 @@
           <div
             class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
           >
-            <h1 class="h2">OYBOT UPDATER</h1>
-            <span class="p-2">V2.2</span>
+            <h1 class="h2">OYBOT RUNNER</h1>
+            <span class="p-2">V1.0</span>
           </div>
           <div class="d-flex rinCards">
             <img class="topUpdater" src="../assests/oyIsAOldMan.png" />
             <div class="col container">
               <div class="row">
                 <span class=""
-                  >Oybot's updater now uses a high level production value
-                  updating system where when the an update is shipped to the
-                  cloud its packaged and zipped then downloaded and unpicked by
-                  the launcher.</span
+                  >Running both bots is now so much easier and faster as an all
+                  in one location todo it!</span
                 >
               </div>
               <div class="row">
-                <button
-                  type="button"
-                  class="btn btn-danger btn-lg col-auto updaterbutton"
-                  style="max-width: 50%"
-                >
-                  UPDATE
-                </button>
+                <div class="btn-group col-auto p-2" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-success">RUN BOTH</button>
+                  <button type="button" class="btn btn-warning text-white">
+                    BOT ONLY
+                  </button>
+                  <button type="button" class="btn btn-warning text-white">AI ONLY</button>
+                </div>
               </div>
             </div>
           </div>
@@ -179,7 +177,6 @@
             var exports = {};
             require("../scripts/getpath.js");
             require("../scripts/main.js");
-            require("../scripts/updater.js");
           </script>
 
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -189,47 +186,6 @@
             crossorigin="anonymous"
           ></script>
         </main>
-      </div>
-    </div>
-    <div
-      class="modal fade show"
-      id="confirmBoot"
-      tabindex="-1"
-      aria-labelledby="confirmDeleteLabel"
-      aria-modal="true"
-      role="dialog"
-    >
-      <div class="modal-dialog">
-        <div class="bg-secondary modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="confirmDeleteLabel">Confirm action</h4>
-            <button
-              type="button"
-              data-dismiss="modal"
-              class="bg-light btn-close"
-              aria-label="Close"
-              aria-hidden="true"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>
-              Are you sure about this? When you do this you will erease all
-              current changes and fix corrupted files.
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">
-              Cancel
-            </button>
-            <button
-              type="button"
-              class="btn btn-success btn-ok"
-              id="confirmBtn"
-            >
-              Mhm Hmm
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </body>
