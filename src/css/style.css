@@ -163,3 +163,14 @@ nav#sidebarMenu {
 .adderButn {
   line-height: 0.5;
 }
+
+.highlight {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #707477;
+}
+
+.changeLog {
+  height: 450px;
+  overflow:auto;
+}

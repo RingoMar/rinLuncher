@@ -35,6 +35,7 @@
     "chart": "^0.1.2",
     "feather": "^0.0.6",
     "follow-redirects": "^1.13.1",
+    "remarkable": "^2.0.1",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9"
   }
